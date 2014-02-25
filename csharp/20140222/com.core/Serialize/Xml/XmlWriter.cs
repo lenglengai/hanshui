@@ -220,7 +220,8 @@ namespace com.core
         {
             SettingConfig settingService_ = __singleton<SettingConfig>.instance();
             string systemPath = settingService_.systemPath();
-            string mPath = Path.Combine(systemPath, nUrl);
+            mPath = Path.Combine(systemPath, nUrl);
+            mXmlDocument = new XmlDocument();
             XmlDeclaration xmlDeclaration_ = mXmlDocument.CreateXmlDeclaration("1.0", "utf-8", null);
             mXmlDocument.AppendChild(xmlDeclaration_);
         }
@@ -234,7 +235,6 @@ namespace com.core
         {
             mXmlDocument.Save(mPath);
             mXmlElements.Clear();
-            mXmlElements = null;
             mXmlDocument = null;
             mXmlElement = null;
             mPath = null;
@@ -243,7 +243,7 @@ namespace com.core
         public XmlWriter()
         {
             mXmlElements = new Stack<XmlElement>();
-            mXmlDocument = new XmlDocument();
+            mXmlDocument = null;
             mXmlElement = null;
             mPath = null;
         }

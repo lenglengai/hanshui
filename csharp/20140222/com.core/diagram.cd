@@ -1,49 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="com.core.OpCode" Collapsed="true">
+  <Class Name="com.core.Time" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAAAAgAAAgAAAAAAAAAAABABAAAACAAAAAAA=</HashCode>
-      <FileName>OpCode\OpCode.cs</FileName>
+      <HashCode>ArQkMAAIAABAAAAABAAAIBBAAAQAgAAABAAAAgAAACA=</HashCode>
+      <FileName>Closed\Time\Time.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="com.core.OpCodeMgr" Collapsed="true">
-    <Position X="0.5" Y="1.25" Width="1.5" />
+  <Class Name="com.core.TimeCount" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
-      <FileName>OpCode\OpCodeMgr.cs</FileName>
+      <HashCode>ABAAAAAAAAAAAAAIAAAAIAAIAAAIAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Closed\Time\TimeCount.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="com.core.ClosedOpt" Collapsed="true">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+  <Class Name="com.core.TimeService" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAIAAAAIAAAAAAIAAQAAAAAAAAAACA=</HashCode>
-      <FileName>Closed\ClosedOpt.cs</FileName>
-      <NewMemberFileName>Closed\Closed.cs</NewMemberFileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAgAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Closed\Time\TimeService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="com.core.TimeStart" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAASAAAAAAAABAAAAIAAAAAAAAAAAAUAAAAAAAAA=</HashCode>
+      <FileName>Closed\Time\TimeStart.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="com.core.ClosedMgr" Collapsed="true">
-    <Position X="2.25" Y="1.25" Width="1.5" />
+    <Position X="2.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAAAAAAAAAAAAABCAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>Closed\ClosedMgr.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="com.core.ClosedService" Collapsed="true">
-    <Position X="4" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAA=</HashCode>
-      <FileName>Closed\ClosedService.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Interface Name="com.core.IIntStream" Collapsed="true">
-    <Position X="4" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Serialize\Stream\IIntStream.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Font Name="微软雅黑" Size="9" />
 </ClassDiagram>

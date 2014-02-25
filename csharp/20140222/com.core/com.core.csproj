@@ -45,9 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Closed\ClosedMgr.cs" />
     <Compile Include="Closed\ClosedService.cs" />
     <Compile Include="Closed\Closed.cs" />
-    <Compile Include="Closed\ClosedMgr.cs" />
     <Compile Include="Common\GenerateId.cs" />
     <Compile Include="Common\_RunSlot.cs" />
     <Compile Include="Common\__singleton.cs" />
@@ -64,7 +64,10 @@
     <Compile Include="Serialize\Xml\XmlReader.cs" />
     <Compile Include="Serialize\Xml\XmlWriter.cs" />
     <Compile Include="Service\Setting\SettingConfig.cs" />
-    <Compile Include="Closed\ClosedOpt.cs" />
+    <Compile Include="Closed\Time\Time.cs" />
+    <Compile Include="Closed\Time\TimeCount.cs" />
+    <Compile Include="Closed\Time\TimeService.cs" />
+    <Compile Include="Closed\Time\TimeStart.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="diagram.cd" />

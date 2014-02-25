@@ -1,37 +1,16 @@
-﻿using System;
-
-namespace com.core
+﻿namespace com.core
 {
-    public class Closed : IIntStream
+    public class Closed
     {
-        public void serialize(ISerialize nSerialize)
+        public const int TIME = 1;
+
+        public Closed(int nType, int nId)
         {
-            nSerialize.runDateTime(ref mStartTime, "startTime");
-            nSerialize.runInt32(ref mId, "id");
+            mType = nType;
+            mId = nId;
         }
 
-        public int getKey()
-        {
-            return mId;
-        }
-
-        public DateTime getStartTime()
-        {
-            return mStartTime;
-        }
-
-        public int getId()
-        {
-            return mId;
-        }
-
-        public Closed()
-        {
-            mStartTime = default(DateTime);
-            mId = default(int);
-        }
-
-        DateTime mStartTime;
+        int mType;
         int mId;
     }
 }
