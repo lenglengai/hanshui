@@ -2,7 +2,7 @@
 
 namespace com.core
 {
-    public class TimeService : IStream
+    public class TimeService : IStream, IClosed
     {
         public void serialize(ISerialize nSerialize)
         {
@@ -17,11 +17,17 @@ namespace com.core
             xmlReader.runClose();
         }
 
+        public string getName()
+        {
+            return TAG;
+        }
+
         public TimeService()
         {
             mTimes = new Dictionary<int, Time>();
         }
 
+        static readonly string TAG = typeof(ClosedService).Name;
         Dictionary<int, Time> mTimes;
     }
 }

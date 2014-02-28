@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Closed\ClosedArgs.cs" />
     <Compile Include="Closed\ClosedMgr.cs" />
     <Compile Include="Closed\ClosedService.cs" />
     <Compile Include="Closed\Closed.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Common\_RunSlot.cs" />
     <Compile Include="Common\__singleton.cs" />
     <Compile Include="Common\__tuple.cs" />
+    <Compile Include="Closed\IClosed.cs" />
     <Compile Include="Serialize\Stream\IIntStream.cs" />
     <Compile Include="OpCode\OpCodeMgr.cs" />
     <Compile Include="OpCode\OpCode.cs" />

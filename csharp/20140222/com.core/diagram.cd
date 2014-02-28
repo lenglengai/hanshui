@@ -19,7 +19,7 @@
   <Class Name="com.core.TimeService" Collapsed="true">
     <Position X="0.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAgAAABAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAACAAAAAAAAAAAAAAAIAAAgAAABAAAAAAEAAAAAAA=</HashCode>
       <FileName>Closed\Time\TimeService.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -35,10 +35,24 @@
   <Class Name="com.core.ClosedMgr" Collapsed="true">
     <Position X="2.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>EAAAEAAAAAAAAAgABAAAIAAAAAAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>Closed\ClosedMgr.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="com.core.ClosedArgs">
+    <Position X="2.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Closed\ClosedArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="com.core.IClosed">
+    <Position X="2.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Closed\IClosed.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="微软雅黑" Size="9" />
 </ClassDiagram>
