@@ -42,17 +42,19 @@ namespace com.core
             return mServerCount;
         }
 
-        public int checkVersion(int nVersion)
+        public OpCode checkVersion(int nVersion)
         {
             int high = nVersion >> 12;
             int lower = nVersion & 0xFFF;
-            if (high != mHigh){
-                return OpCode.MUSTUPDATE;
+            if (high != mHigh)
+            {
+                return new OpCode(false, ComCore.MODULE, ComCore.MUSTUPDATE);
             }
-            if (lower != mLower){
-                return OpCode.HAVEUPDATE;
+            if (lower != mLower)
+            {
+                return new OpCode(true, ComCore.MODULE, ComCore.HAVEUPDATE);
             }
-            return OpCode.SUCESS;
+            return new OpCode(true, ComCore.MODULE, ComCore.SUCESS);
         }
 
         public void runPreinit(string nPath = null)

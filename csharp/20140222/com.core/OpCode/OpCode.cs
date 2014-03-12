@@ -2,21 +2,45 @@
 {
     public class OpCode
     {
-        public const int SUCESS = 0;
-        public const int HAVEUPDATE = 1;
-        public const int MUSTUPDATE = 2;
-        public const int SYSTEM = 3;
-
-        public static void runPreinit()
+        public void setResult(bool nResult)
         {
-            OpCodeMgr opCodeMgr = __singleton<OpCodeMgr>.instance();
-            if (!opCodeMgr.runRegister(ID)) 
-            {
-                LogService logService = __singleton<LogService>.instance();
-                logService.logFatal(TAG, "com.core");
-            }
+            mResult = nResult;
         }
-        public static readonly int ID = GenerateId.runCommon("com.core");
-        static readonly string TAG = typeof(OpCode).Name;
+
+        public bool getResult()
+        {
+            return mResult;
+        }
+
+        public void setModule(int nModule)
+        {
+            mModule = nModule;
+        }
+
+        public int getModule()
+        {
+            return mModule;
+        }
+
+        public void setError(int nError)
+        {
+            mError = nError;
+        }
+
+        public int getError()
+        {
+            return mError;
+        }
+
+        public OpCode(bool nResult, int nModule, int nError)
+        {
+            mResult = nResult;
+            mModule = nModule;
+            mError = nError;
+        }
+
+        bool mResult;
+        int mModule;
+        int mError;
     }
 }

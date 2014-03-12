@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace com.core
 {
     public class Time : IIntStream
     {
-        public const sbyte BEFORE = 2;
-
         public const sbyte OPEN = 0;
         public const sbyte CLOSED = 1;
         public const sbyte NORMALDAY = 2;
@@ -25,6 +24,93 @@ namespace com.core
             nSerialize.runInt8(ref mType, "timeType", NORMALDAY);
             nSerialize.runStream(ref mTimeStart, "timeStart");
             nSerialize.runStream(ref mTimeCount, "timeCount");
+            nSerialize.runStream(ref mTimeEnd, "timeEnd");
+        }
+
+        public bool checkClosed(DateTime nNowTime, DateTime nStartTime, DateTime nSaveTime)
+        {
+            if (OPEN == mType)
+            {
+                return false;
+            }
+            else if ( ( (NORMALDAY <= mType) && (NOWDAY >= mType) )
+                || ( (YEAR <= mType) && (WEEK >= mType) ) )
+            {
+                DateTime startTime = this.getStartTime(nNowTime, nStartTime, nSaveTime);
+                return mTimeCount.isDayClosed(nNowTime, nStartTime, mTimeEnd);
+            }
+            else if ((NOWHOUR == mType) || (DAY == mType))
+            {
+                DateTime startTime = this.getStartTime(nNowTime, nStartTime, nSaveTime);
+                return mTimeCount.isHourClosed(nNowTime, nStartTime);
+            }
+            else if (NOWMIN == mType)
+            {
+                DateTime startTime = this.getStartTime(nNowTime, nStartTime, nSaveTime);
+                return mTimeCount.isMinClosed(nNowTime, nStartTime);
+            }
+            else if (NOWSEC == mType)
+            {
+                DateTime startTime = this.getStartTime(nNowTime, nStartTime, nSaveTime);
+                return mTimeCount.isSecClosed(nNowTime, nStartTime);
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        DateTime getStartTime(DateTime nNowTime, DateTime nStartTime, DateTime nSaveTime)
+        {
+            if (NORMALDAY == mType)
+            {
+                return mTimeStart.getTime();
+            }
+            else if (STARTDAY == mType)
+            {
+                return nStartTime;
+            }
+            else if (NOWDAY == mType)
+            {
+                return nSaveTime;
+            }
+            else if (NOWHOUR == mType)
+            {
+                return nSaveTime;
+            }
+            else if (NOWMIN == mType)
+            {
+                return nSaveTime;
+            }
+            else if (NOWSEC == mType)
+            {
+                return nSaveTime;
+            }
+            else if (YEAR == mType)
+            {
+                return mTimeStart.getYearTime(nNowTime);
+            }
+            else if (MONTH == mType)
+            {
+                return mTimeStart.getMonthTime(nNowTime);
+            }
+            else if (WEEK == mType)
+            {
+                return mTimeStart.getWeekTime(nNowTime);
+            }
+            else if (DAY == mType)
+            {
+                return mTimeStart.getDayTime(nNowTime);
+            }
+            else
+            {
+                return DateTime.MinValue;
+            }
+        }
+
+        public bool isClosed(DateTime nNowTime, DateTime nStartTime)
+        {
+            return true;
         }
 
         public int getKey()
@@ -43,11 +129,13 @@ namespace com.core
             mType = NORMALDAY;
             mTimeStart = new TimeStart();
             mTimeCount = new TimeCount();
+            mTimeEnd = new TimeEnd();
         }
 
         int mId;
         sbyte mType;
         TimeStart mTimeStart;
         TimeCount mTimeCount;
+        TimeEnd mTimeEnd;
     }
 }

@@ -1,33 +1,65 @@
-﻿namespace com.core
+﻿using System;
+using System.Collections.Generic;
+
+namespace com.core
 {
-    public class Closed
+    public class Closed : IStream
     {
-        public const int AND = 1;
-        public const int OR = 2;
-
-        public const int TIME = 1;
-
-        public bool checkClosed()
+        public void serialize(ISerialize nSerialize, int nCount)
         {
-            return false;
+            nSerialize.runInt32Semi(ref mObjects, "closedObjects_" + nCount);
+            nSerialize.runCrc32(ref mClassify, "closedClassify_" + nCount);
+            nSerialize.runInt32(ref mType, "closedType_" + nCount);
+            nSerialize.runInt32(ref mId, "closedId_" + nCount);
+            nSerialize.runCrc32(ref mModule, "closedModule_" + nCount);
+            nSerialize.runCrc32(ref mError, "closedError_" + nCount);
+        }
+        
+        public IList<int> getObjects()
+        {
+            return mObjects;
         }
 
-        public bool checkClosed(bool nValue)
+        public int getClassify()
         {
-            return false;
+            return mClassify;
         }
 
-        public Closed(int nLogic, int nType, int nId, int nError)
+        public int getType()
         {
-            mLogic = nLogic;
-            mType = nType;
-            mId = nId;
-            mError = nError;
+            return mType;
         }
 
-        int mLogic;
+        public int getId()
+        {
+            return mId;
+        }
+
+        public int getModule()
+        {
+            return mModule;
+        }
+
+        public int getError()
+        {
+            return mError;
+        }
+
+        public Closed()
+        {
+            mObjects = new List<int>();
+            mClassify = default(int);
+            mType = default(int);
+            mId = default(int);
+            mModule = default(int);
+            mError = default(int);
+        }
+
+        List<int> mObjects;
+        int mClassify;
         int mType;
         int mId;
+        int mModule;
         int mError;
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IStream
     {
-        void serialize(ISerialize nSerialize);
+        void serialize(ISerialize nSerialize, int nCount);
     }
 }

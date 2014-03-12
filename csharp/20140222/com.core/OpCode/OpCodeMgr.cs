@@ -6,7 +6,8 @@ namespace com.core
     {
         public bool runRegister(int nOpCode)
         {
-            if (mOpCodes.Contains(nOpCode)){
+            if (mOpCodes.Contains(nOpCode))
+            {
                 return false;
             }
             mOpCodes.Add(nOpCode);

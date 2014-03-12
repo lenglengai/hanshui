@@ -32,6 +32,18 @@ namespace com.core
             }
         }
 
+        public void runInt8Count(ref List<sbyte> nValue, string nNames, string nName, int nCount)
+        {
+            for (int i = 0; i < nCount; ++i)
+            {
+                sbyte temp = default(sbyte);
+                this.runInt8(ref temp, nName + i);
+                if (default(sbyte) != temp){
+                    nValue.Add(temp);
+                }
+            }
+        }
+
         public void runInt8s(ref List<sbyte> nValue, string nNames, string nName)
         {
             if (null == nValue) {
@@ -46,6 +58,24 @@ namespace com.core
             }
         }
 
+        public void runInt8Semi(ref List<sbyte> nValue, string nName)
+        {
+            XmlAttribute xmlAttribute_ = mXmlNode.Attributes[nName];
+            if (null == xmlAttribute_) return;
+            try {
+                string text_ = xmlAttribute_.InnerText;
+                string objects = text_.Trim(new char[2] { ';', ' ' });
+                string[] temp = objects.Split(';');
+                foreach (string i in temp)
+                {
+                    nValue.Add(Convert.ToSByte(i));
+                }
+            } catch (FormatException) {
+                LogService logService = __singleton<LogService>.instance();
+                logService.logError(TAG, string.Format("runInt8Semi[{0}]", nName));
+            }
+        }
+
         public void runInt16(ref short nValue, string nName, short nOptimal = default(short))
         {
             nValue = nOptimal;
@@ -53,6 +83,19 @@ namespace com.core
             if (null != xmlAttribute_) {
                 string text_ = xmlAttribute_.InnerText;
                 nValue = Convert.ToInt16(text_);
+            }
+        }
+
+        public void runInt16Count(ref List<short> nValue, string nNames, string nName, int nCount)
+        {
+            for (int i = 0; i < nCount; ++i)
+            {
+                short temp = default(short);
+                this.runInt16(ref temp, nName + i);
+                if (default(short) != temp)
+                {
+                    nValue.Add(temp);
+                }
             }
         }
 
@@ -70,6 +113,24 @@ namespace com.core
             }
         }
 
+        public void runInt16Semi(ref List<short> nValue, string nName)
+        {
+            XmlAttribute xmlAttribute_ = mXmlNode.Attributes[nName];
+            if (null == xmlAttribute_) return;
+            try {
+                string text_ = xmlAttribute_.InnerText;
+                string objects = text_.Trim(new char[2] { ';', ' ' });
+                string[] temp = objects.Split(';');
+                foreach (string i in temp)
+                {
+                    nValue.Add(Convert.ToInt16(i));
+                }
+            }  catch (FormatException) {
+                LogService logService = __singleton<LogService>.instance();
+                logService.logError(TAG, string.Format("runInt16Semi[{0}]", nName));
+            }
+        }
+
         public void runInt32(ref int nValue, string nName, int nOptimal = default(int))
         {
             nValue = nOptimal;
@@ -77,6 +138,19 @@ namespace com.core
             if (null != xmlAttribute_) {
                 string text_ = xmlAttribute_.InnerText;
                 nValue = Convert.ToInt32(text_);
+            }
+        }
+
+        public void runInt32Count(ref List<int> nValue, string nNames, string nName, int nCount)
+        {
+            for (int i = 0; i < nCount; ++i)
+            {
+                int temp = default(int);
+                this.runInt32(ref temp, nName + i);
+                if (default(int) != temp)
+                {
+                    nValue.Add(temp);
+                }
             }
         }
 
@@ -94,6 +168,82 @@ namespace com.core
             }
         }
 
+        public void runInt32Semi(ref List<int> nValue, string nName)
+        {
+            XmlAttribute xmlAttribute_ = mXmlNode.Attributes[nName];
+            if (null == xmlAttribute_) return;
+            try {
+                string text_ = xmlAttribute_.InnerText;
+                string objects = text_.Trim(new char[2] { ';', ' ' });
+                string[] temp = objects.Split(';');
+                foreach (string i in temp)
+                {
+                    nValue.Add(Convert.ToInt32(i));
+                }
+            } catch (FormatException) {
+                LogService logService = __singleton<LogService>.instance();
+                logService.logError(TAG, string.Format("runInt32Semi[{0}]", nName));
+            }
+        }
+
+        public void runCrc32(ref int nValue, string nName, int nOptimal = default(int))
+        {
+            nValue = nOptimal;
+            XmlAttribute xmlAttribute_ = mXmlNode.Attributes[nName];
+            if (null != xmlAttribute_)
+            {
+                string text_ = xmlAttribute_.InnerText;
+                nValue = GenerateId.runCommon(text_);
+            }
+        }
+
+        public void runCrc32Count(ref List<int> nValue, string nNames, string nName, int nCount)
+        {
+            for (int i = 0; i < nCount; ++i)
+            {
+                int temp = default(int);
+                this.runInt32(ref temp, nName + i);
+                if (default(int) != temp)
+                {
+                    nValue.Add(temp);
+                }
+            }
+        }
+        
+        public void runCrc32s(ref List<int> nValue, string nNames, string nName)
+        {
+            if (null == nValue)
+            {
+                nValue = new List<int>();
+            }
+            XmlNode xmlNode_ = mXmlNode.SelectSingleNode(nNames);
+            if (null == xmlNode_) return;
+            foreach (XmlNode i in xmlNode_.ChildNodes)
+            {
+                string text_ = i.InnerText;
+                int value_ = GenerateId.runCommon(text_);
+                nValue.Add(value_);
+            }
+        }
+
+        public void runCrc32Semi(ref List<int> nValue, string nName)
+        {
+            XmlAttribute xmlAttribute_ = mXmlNode.Attributes[nName];
+            if (null == xmlAttribute_) return;
+            try {
+                string text_ = xmlAttribute_.InnerText;
+                string objects = text_.Trim(new char[2] { ';', ' ' });
+                string[] temp = objects.Split(';');
+                foreach (string i in temp)
+                {
+                    nValue.Add(GenerateId.runCommon(i));
+                }
+            }  catch (FormatException) {
+                LogService logService = __singleton<LogService>.instance();
+                logService.logError(TAG, string.Format("runCrc32Semi[{0}]", nName));
+            }
+        }
+
         public void runInt64(ref long nValue, string nName, long nOptimal = default(long))
         {
             nValue = nOptimal;
@@ -101,6 +251,19 @@ namespace com.core
             if (null != xmlAttribute_) {
                 string text_ = xmlAttribute_.InnerText;
                 nValue = Convert.ToInt64(text_);
+            }
+        }
+
+        public void runInt64Count(ref List<long> nValue, string nNames, string nName, int nCount)
+        {
+            for (int i = 0; i < nCount; ++i)
+            {
+                long temp = default(long);
+                this.runInt64(ref temp, nName + i);
+                if (default(int) != temp)
+                {
+                    nValue.Add(temp);
+                }
             }
         }
 
@@ -118,12 +281,43 @@ namespace com.core
             }
         }
 
+        public void runInt64Semi(ref List<long> nValue, string nName)
+        {
+            XmlAttribute xmlAttribute_ = mXmlNode.Attributes[nName];
+            if (null == xmlAttribute_) return;
+            try {
+                string text_ = xmlAttribute_.InnerText;
+                string objects = text_.Trim(new char[2] { ';', ' ' });
+                string[] temp = objects.Split(';');
+                foreach (string i in temp)
+                {
+                    nValue.Add(Convert.ToInt64(i));
+                }
+            } catch (FormatException) {
+                LogService logService = __singleton<LogService>.instance();
+                logService.logError(TAG, string.Format("runInt64Semi[{0}]", nName));
+            }
+        }
+
         public void runString(ref string nValue, string nName, string nOptimal = default(string))
         {
             nValue = nOptimal;
             XmlAttribute xmlAttribute_ = mXmlNode.Attributes[nName];
             if (null != xmlAttribute_) {
                 nValue = xmlAttribute_.InnerText;
+            }
+        }
+
+        public void runStringCount(ref List<string> nValue, string nNames, string nName, int nCount)
+        {
+            for (int i = 0; i < nCount; ++i)
+            {
+                string temp = default(string);
+                this.runString(ref temp, nName + i);
+                if (default(string) != temp)
+                {
+                    nValue.Add(temp);
+                }
             }
         }
 
@@ -140,6 +334,24 @@ namespace com.core
             }
         }
 
+        public void runStringSemi(ref List<string> nValue, string nName)
+        {
+            XmlAttribute xmlAttribute_ = mXmlNode.Attributes[nName];
+            if (null == xmlAttribute_) return;
+            try {
+                string text_ = xmlAttribute_.InnerText;
+                string objects = text_.Trim(new char[2] { ';', ' ' });
+                string[] temp = objects.Split(';');
+                foreach (string i in temp)
+                {
+                    nValue.Add(i);
+                }
+            } catch (FormatException) {
+                LogService logService = __singleton<LogService>.instance();
+                logService.logError(TAG, string.Format("runStringSemi[{0}]", nName));
+            }
+        }
+
         public void runFloat(ref float nValue, string nName, float nOptimal = default(float))
         {
             nValue = nOptimal;
@@ -147,6 +359,19 @@ namespace com.core
             if (null != xmlAttribute_) {
                 string text_ = xmlAttribute_.InnerText;
                 nValue = Convert.ToSingle(text_);
+            }
+        }
+
+        public void runFloatCount(ref List<float> nValue, string nNames, string nName, int nCount)
+        {
+            for (int i = 0; i < nCount; ++i)
+            {
+                float temp = default(float);
+                this.runFloat(ref temp, nName + i);
+                if (default(float) != temp)
+                {
+                    nValue.Add(temp);
+                }
             }
         }
 
@@ -164,6 +389,24 @@ namespace com.core
             }
         }
 
+        public void runFloatSemi(ref List<float> nValue, string nName)
+        {
+            XmlAttribute xmlAttribute_ = mXmlNode.Attributes[nName];
+            if (null == xmlAttribute_) return;
+            try {
+                string text_ = xmlAttribute_.InnerText;
+                string objects = text_.Trim(new char[2] { ';', ' ' });
+                string[] temp = objects.Split(';');
+                foreach (string i in temp)
+                {
+                    nValue.Add(Convert.ToSingle(i));
+                }
+            } catch (FormatException) {
+                LogService logService = __singleton<LogService>.instance();
+                logService.logError(TAG, string.Format("runStringSemi[{0}]", nName));
+            }
+        }
+
         public void runDouble(ref double nValue, string nName, double nOptimal = default(double))
         {
             nValue = nOptimal;
@@ -171,6 +414,19 @@ namespace com.core
             if (null != xmlAttribute_) {
                 string text_ = xmlAttribute_.InnerText;
                 nValue = Convert.ToDouble(text_);
+            }
+        }
+
+        public void runDoubleCount(ref List<double> nValue, string nNames, string nName, int nCount)
+        {
+            for (int i = 0; i < nCount; ++i)
+            {
+                double temp = default(double);
+                this.runDouble(ref temp, nName + i);
+                if (default(double) != temp)
+                {
+                    nValue.Add(temp);
+                }
             }
         }
 
@@ -188,6 +444,24 @@ namespace com.core
             }
         }
 
+        public void runDoubleSemi(ref List<double> nValue, string nName)
+        {
+            XmlAttribute xmlAttribute_ = mXmlNode.Attributes[nName];
+            if (null == xmlAttribute_) return;
+            try {
+                string text_ = xmlAttribute_.InnerText;
+                string objects = text_.Trim(new char[2] { ';', ' ' });
+                string[] temp = objects.Split(';');
+                foreach (string i in temp)
+                {
+                    nValue.Add(Convert.ToDouble(i));
+                }
+            } catch (FormatException) {
+                LogService logService = __singleton<LogService>.instance();
+                logService.logError(TAG, string.Format("runDoubleSemi[{0}]", nName));
+            }
+        }
+
         public void runDateTime(ref DateTime nValue, string nName, DateTime nOptimal = default(DateTime))
         {
             nValue = nOptimal;
@@ -199,7 +473,7 @@ namespace com.core
             }
         }
 
-        public void runStream<T>(ref T nValue, string nName, T nOptimal = default(T)) where T : IStream
+        public void runStream<T>(ref T nValue, string nName, int nCount = 0, T nOptimal = default(T)) where T : IStream
         {
             mXmlNodes.Push(mXmlNode);
             mXmlNode = mXmlNode.SelectSingleNode(nName);
@@ -210,7 +484,28 @@ namespace com.core
                 {
                     nValue = Activator.CreateInstance<T>();
                 }
-                nValue.serialize(this);
+                nValue.serialize(this, nCount);
+            }
+            mXmlNode = mXmlNodes.Pop();
+        }
+
+        public void runStreamCount<T>(ref List<T> nValue, string nNames, string nName, int nCount) where T : IStream
+        {
+            if (null == nValue)
+            {
+                nValue = new List<T>();
+            }
+            mXmlNodes.Push(mXmlNode);
+            XmlNode xmlNode_ = mXmlNode.SelectSingleNode(nNames);
+            if (null != xmlNode_)
+            {
+                foreach (XmlNode i in xmlNode_.ChildNodes)
+                {
+                    mXmlNode = i;
+                    T t_ = Activator.CreateInstance<T>();
+                    t_.serialize(this, nCount);
+                    nValue.Add(t_);
+                }
             }
             mXmlNode = mXmlNodes.Pop();
         }
@@ -226,7 +521,7 @@ namespace com.core
                 foreach (XmlNode i in xmlNode_.ChildNodes) {
                     mXmlNode = i;
                     T t_ = Activator.CreateInstance<T>();
-                    t_.serialize(this);
+                    t_.serialize(this, 0);
                     nValue.Add(t_);
                 }
             }
@@ -247,7 +542,7 @@ namespace com.core
                 {
                     mXmlNode = i;
                     T t_ = Activator.CreateInstance<T>();
-                    t_.serialize(this);
+                    t_.serialize(this, 0);
                     nValue[t_.getKey()] = t_;
                 }
             }
@@ -277,7 +572,7 @@ namespace com.core
             mXmlNodes = new Stack<XmlNode>();
             mXmlNode = null;
         }
-
+        static readonly string TAG = typeof(XmlReader).Name;
         XmlDocument mXmlDocument;
         Stack<XmlNode> mXmlNodes;
         XmlNode mXmlNode;
