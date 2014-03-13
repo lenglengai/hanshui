@@ -4,9 +4,10 @@ namespace com.core
 {
     public class ClosedMgr : IIntStream
     {
-        public void serialize(ISerialize nSerialize)
+        public void serialize(ISerialize nSerialize, int nCount)
         {
-            nSerialize.runStreamCount(ref mCloseds, "closeds", "closed", 3);
+            nSerialize.runStreamCount(ref mOpeneds, "openeds", "opened", 6);
+            nSerialize.runStreamCount(ref mCloseds, "closeds", "closed", 6);
             nSerialize.runInt32(ref mId, "closedMgrId");
             nSerialize.runCrc32(ref mModule, "closedMgrModule");
             nSerialize.runCrc32(ref mError, "closedMgrError");
@@ -15,6 +16,11 @@ namespace com.core
         public int getKey()
         {
             return mId;
+        }
+
+        public IList<Opened> getOpeneds()
+        {
+            return mOpeneds;
         }
 
         public IList<Closed> getCloseds()
@@ -39,15 +45,17 @@ namespace com.core
 
         public ClosedMgr()
         {
-            mId = 0;
+            mCloseds = new List<Closed>();
+            mOpeneds = new List<Opened>();
             mModule = ComCore.MODULE;
             mError = ComCore.SUCESS;
-            mCloseds = new List<Closed>();
+            mId = 0;
         }
 
-        int mId;
+        List<Closed> mCloseds;
+        List<Opened> mOpeneds;
         int mModule;
         int mError;
-        List<Closed> mCloseds;
+        int mId;
     }
 }

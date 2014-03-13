@@ -2,7 +2,7 @@
 {
     public class TimeEnd : IStream
     {
-        public void serialize(ISerialize nSerialize)
+        public void serialize(ISerialize nSerialize, int nCount)
         {
             nSerialize.runInt8(ref mHour, "endHour");
             nSerialize.runInt8(ref mMin, "endHour");

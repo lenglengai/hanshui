@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace com.core
 {
     public class TimeMgr : IIntStream
     {
-        public void serialize(ISerialize nSerialize)
+        public void serialize(ISerialize nSerialize, int nCount)
         {
-            string strClassify = null;
-            nSerialize.runString(ref strClassify, "classify");
-            mClassify = GenerateId.runCommon(strClassify);
-
             nSerialize.runIntStreams(ref mTimes, "times", "time");
+            nSerialize.runCrc32(ref mClassify, "classify");
         }
 
         public string streamName()
@@ -38,7 +33,7 @@ namespace com.core
             XmlReader xmlReader = new XmlReader();
             xmlReader.openUrl(nUrl);
             xmlReader.selectStream(streamName());
-            this.serialize(xmlReader);
+            this.serialize(xmlReader, 0);
             xmlReader.runClose();
         }
 

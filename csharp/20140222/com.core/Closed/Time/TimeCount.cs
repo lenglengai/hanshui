@@ -4,7 +4,7 @@ namespace com.core
 {
     public class TimeCount : IStream
     {
-        public void serialize(ISerialize nSerialize)
+        public void serialize(ISerialize nSerialize, int nCount)
         {
             nSerialize.runInt16(ref mSpace, "countSpace");
             nSerialize.runInt16(ref mCount, "countCount");

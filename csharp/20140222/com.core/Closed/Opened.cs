@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace com.core
 {
@@ -7,10 +6,10 @@ namespace com.core
     {
         public void serialize(ISerialize nSerialize, int nCount)
         {
+            nSerialize.runInt32Semi(ref mObjects, "objects_" + nCount);
             nSerialize.runCrc32(ref mClassify, "classify_" + nCount);
             nSerialize.runInt32(ref mType, "type_" + nCount);
             nSerialize.runInt32(ref mId, "id_" + nCount);
-            nSerialize.runInt32Semi(ref mObjects, "objects_" + nCount);
         }
 
         public IList<int> getObjects()

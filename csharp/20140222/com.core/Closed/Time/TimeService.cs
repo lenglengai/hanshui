@@ -21,15 +21,7 @@ namespace com.core
             return timeMgr.checkClosed(getTime(), mStartTime, dateTime, nClosed);
         }
 
-        public void runOpen(int nClassify, int nOpened, IList<object> nOpeneds)
-        {
-        }
-
-        public void runPreinit()
-        {
-        }
-
-        public string getName()
+        public string getClosedName()
         {
             return TAG;
         }

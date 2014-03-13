@@ -22,14 +22,6 @@ namespace com.core
 
         }
 
-        public void _runActionId(ActionId nActionId)
-        {
-            foreach (KeyValuePair<uint, Task> i in mTasks)
-            {
-                i.Value._runActionId(nActionId);
-            }
-        }
-
         public TaskMgr()
         {
             mTasks = new Dictionary<int, Task>();

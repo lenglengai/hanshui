@@ -4,28 +4,20 @@ namespace com.core
 {
     public class ClosedService
     {
-        public void runPlugin(string nUrl)
-        {
-            XmlReader xmlReader = new XmlReader();
-            xmlReader.openUrl("config/closed.xml");
-            this.serialize(xmlReader);
-            xmlReader.runClose();
-        }
-
-        public OpCode checkClosed(ClosedArgs nClosedArgs)
+        public ErrorCode runClosed(ClosedArgs nClosedArgs)
         {
             int closedModuleId = nClosedArgs.getClosedModuleId();
             if (!mClosedModules.ContainsKey(closedModuleId))
             {
                 LogService logService = __singleton<LogService>.instance();
                 logService.logError(TAG, string.Format("ClosedArgs[{0}]", closedModuleId));
-                return new OpCode(true, ComCore.MODULE, ComCore.SYSTEM);
+                return new ErrorCode(true, ComCore.MODULE, ComCore.SYSTEM);
             }
             ClosedModule closedModule = mClosedModules[closedModuleId];
-            return this.checkClosed(closedModule, nClosedArgs);
+            return this.runClosed(closedModule, nClosedArgs);
         }
 
-        OpCode checkClosed(ClosedModule nClosedModule, ClosedArgs nClosedArgs)
+        ErrorCode runClosed(ClosedModule nClosedModule, ClosedArgs nClosedArgs)
         {
             IDictionary<int, ClosedMgr> closedMgrs = nClosedModule.getClosedMgrs();
             int closedMgrId = nClosedArgs.getClosedMgrId();
@@ -33,30 +25,58 @@ namespace com.core
             {
                 LogService logService = __singleton<LogService>.instance();
                 logService.logError(TAG, string.Format("ClosedModule[{0}]", closedMgrId));
-                return new OpCode(true, ComCore.MODULE, ComCore.SYSTEM);
+                return new ErrorCode(true, ComCore.MODULE, ComCore.SYSTEM);
             }
-            return checkClosed(closedMgrs[closedMgrId], nClosedArgs);
+            return runClosed(closedMgrs[closedMgrId], nClosedArgs);
         }
 
-        OpCode checkClosed(ClosedMgr nClosedMgr, ClosedArgs nClosedArgs)
+        ErrorCode runClosed(ClosedMgr nClosedMgr, ClosedArgs nClosedArgs)
         {
+            bool isOpened = false;
             int module = nClosedMgr.getModule();
             int error_ = nClosedMgr.getError();
-            OpCode result = new OpCode(true, module, error_);
             IList<Closed> closeds = nClosedMgr.getCloseds();
             foreach (Closed i in closeds)
             {
                 if (!this.checkClosed(i, nClosedArgs))
                 {
-                    module = nClosedMgr.getModule();
-                    error_ = nClosedMgr.getError();
-                    result.setResult(false);
-                    result.setModule(module);
-                    result.setError(error_);
+                    isOpened = false;
+                    module = i.getModule();
+                    error_ = i.getError();
                     break;
                 }
             }
-            return result;
+            if (isOpened) {
+                IList<Opened> openeds = nClosedMgr.getOpeneds();
+                foreach (Opened i in openeds)
+                {
+                    this.runOpened(i, nClosedArgs);
+                }
+            }
+            return new ErrorCode(isOpened, module, error_);
+        }
+
+        void runOpened(Opened nOpened, ClosedArgs nClosedArgs)
+        {
+            List<object> closeds = new List<object>();
+            IList<int> ints = nOpened.getObjects();
+            IList<object> objects = nClosedArgs.getObjects();
+            foreach (int i in ints)
+            {
+                object temp = objects[i];
+                closeds.Add(temp);
+            }
+            int type = nOpened.getType();
+            if (!mOpeneds.ContainsKey(type))
+            {
+                LogService logService = __singleton<LogService>.instance();
+                logService.logError(TAG, string.Format("nOpened[{0}]", type));
+                return;
+            }
+            IOpened opened = mOpeneds[type];
+            int clossify = nOpened.getClassify();
+            int classedId = nOpened.getId();
+            opened.runOpen(clossify, classedId, closeds);
         }
 
         bool checkClosed(Closed nClosed, ClosedArgs nClosedArgs)
@@ -86,10 +106,12 @@ namespace com.core
         {
             mClosedModules = new Dictionary<int, ClosedModule>();
             mCloseds = new Dictionary<int, IClosed>();
+            mOpeneds = new Dictionary<int, IOpened>();
         }
 
         static readonly string TAG = typeof(ClosedService).Name;
         Dictionary<int, ClosedModule> mClosedModules;
         Dictionary<int, IClosed> mCloseds;
+        Dictionary<int, IOpened> mOpeneds;
     }
 }

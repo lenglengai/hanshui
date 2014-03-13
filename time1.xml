@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<times>
+	<time timeId="1" timeType="10">
+		<timeStart startYear="2014" startMonth="2" startMday="1" startHour="12" startWday="1"/>
+		<timeCount countSpace="1" countCount="2" countNext="1" countCycle="2"/>
+		<timeEnd endHour="1" endMin="2"/>
+	</time>
+</times>

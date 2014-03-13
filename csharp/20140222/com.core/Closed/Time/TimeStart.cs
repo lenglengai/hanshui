@@ -4,7 +4,7 @@ namespace com.core
 {
     public class TimeStart : IStream
     {
-        public void serialize(ISerialize nSerialize)
+        public void serialize(ISerialize nSerialize, int nCount)
         {
             nSerialize.runInt16(ref mYear, "startYear", 2014);
             nSerialize.runInt8(ref mMonth, "startMonth", 1);

@@ -1,6 +1,6 @@
 ﻿namespace com.core
 {
-    public class OpCode
+    public class ErrorCode
     {
         public void setResult(bool nResult)
         {
@@ -32,7 +32,7 @@
             return mError;
         }
 
-        public OpCode(bool nResult, int nModule, int nError)
+        public ErrorCode(bool nResult, int nModule, int nError)
         {
             mResult = nResult;
             mModule = nModule;

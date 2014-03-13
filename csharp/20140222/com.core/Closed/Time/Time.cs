@@ -18,7 +18,7 @@ namespace com.core
         public const sbyte WEEK = 10;
         public const sbyte DAY = 11;
 
-        public void serialize(ISerialize nSerialize)
+        public void serialize(ISerialize nSerialize, int nCount)
         {
             nSerialize.runInt32(ref mId, "timeId", 0);
             nSerialize.runInt8(ref mType, "timeType", NORMALDAY);
@@ -107,12 +107,7 @@ namespace com.core
                 return DateTime.MinValue;
             }
         }
-
-        public bool isClosed(DateTime nNowTime, DateTime nStartTime)
-        {
-            return true;
-        }
-
+        
         public int getKey()
         {
             return mId;
