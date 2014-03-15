@@ -4,23 +4,30 @@
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAUAFAAAAAAAAAAAAAIBAAAQAAAAAAAAAAAAIAAAA=</HashCode>
-      <FileName>Closed\Opened.cs</FileName>
+      <FileName>Closed\Open\Opened.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="com.core.ClosedModule" Collapsed="true">
-    <Position X="0.5" Y="2.25" Width="1.5" />
+    <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIEAAAAAAAAAAAAACAAACAAAAAAAAAAAEAAABAAAA=</HashCode>
       <FileName>Closed\ClosedModule.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="com.core.Count" Collapsed="true">
+    <Position X="2.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Closed\Count\Count.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="com.core.IOpened" Collapsed="true">
     <Position X="0.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
-      <FileName>Closed\IOpened.cs</FileName>
+      <FileName>Closed\Open\IOpened.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="微软雅黑" Size="9" />
