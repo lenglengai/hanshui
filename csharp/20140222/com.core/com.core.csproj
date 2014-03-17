@@ -59,6 +59,7 @@
     <Compile Include="Common\__tuple.cs" />
     <Compile Include="Closed\Closed\IClosed.cs" />
     <Compile Include="Closed\Open\Opened.cs" />
+    <Compile Include="Closed\Count\ICount.cs" />
     <Compile Include="Serialize\Stream\IIntStream.cs" />
     <Compile Include="ErrorCode\ErrorCode.cs" />
     <Compile Include="Serialize\Json\JsonWriter.cs" />
